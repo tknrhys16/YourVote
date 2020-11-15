@@ -4,6 +4,8 @@
     <tr>
       <% @votes.each do |vote| %>
       <td><%= link_to vote.title, vote_path(vote) %></td>
+      <% end %>
+      <%= link_to "お題一覧へ", votes_path %>
     </tr>
   </tbody>
 </table>
