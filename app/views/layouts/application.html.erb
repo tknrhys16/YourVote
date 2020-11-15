@@ -1,15 +1,25 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Yourvote</title>
+    <title>YourVote</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-    <%= yield %>
+    <div class="container body-line">
+      <div class="row">
+        <div class="header-line">
+          <%= render "layouts/header" %>
+        </div>
+      </div>
+      <div class="row">
+        <%= yield %>
+      </div>
+        <footer></footer>
+
+    </div>
   </body>
 </html>
