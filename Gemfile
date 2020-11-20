@@ -66,3 +66,9 @@ gem "jquery-rails"
 gem "bootstrap-sass"
 gem "refile"
 gem 'pry-byebug'
+gem 'pry-rails'
+
+gem 'dotenv-rails'
+group :production do
+  gem 'mysql2'
+end
