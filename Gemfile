@@ -67,8 +67,8 @@ gem "bootstrap-sass"
 gem "refile"
 gem 'pry-byebug'
 gem 'pry-rails'
-
 gem 'dotenv-rails'
+gem 'gon'#Railsで定義した変数をjavascriptで使う
 group :production do
   gem 'mysql2'
 end

@@ -1,11 +1,20 @@
 <h2>お題投票一覧</h2>
-<table>
-  <tbody>
+<table class="table">
+  <thead>
     <tr>
-      <% @votes.each do |vote| %>
-      <td><%= link_to vote.title, vote_path(vote) %></td>
+			<th>タイトル</th>
+			<th>本文</th>
+		</tr>
+	</thead>
+  <tbody>
+    <% @votes.each do |vote| %>
+      <% if vote.status == true %>
+        <tr>
+          <td><%= link_to vote.title, vote_path(vote) %></td>
+          <td><%= vote.body %></td>
+        </tr>
+      <% elsif vote.status == false %>
       <% end %>
-      <%= link_to "お題一覧へ", votes_path %>
-    </tr>
+    <% end %>
   </tbody>
 </table>

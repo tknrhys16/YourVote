@@ -1,5 +1,5 @@
 <h2>お題登録</h2>
-<%= form_with model: book, local:true do |f| %>
+<%= form_with model: @vote, local:true do |f| %>
   <div>
     <%= f.label :title %>
     <%= f.text_field :title%>
@@ -8,9 +8,16 @@
     <%= f.label :body %>
     <%= f.text_field :body%>
   </div>
-  <div>
-    <%= f.label :topic %>
-    <%= f.text_field :topic.body %>
+  
+  <%= f.fields_for :topics do |topic| %>
+    <div>
+      <%= f.label :"お題" %>
+      <div><span>1</span><%= topic.text_field :body %></div>
+    </div>
+  <% end %>
+  
+  <div class="actions row">
+    <%= f.submit class: 'btn btn-primary col-xs-12' %>
   </div>
   <% end %>
   

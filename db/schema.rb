@@ -10,9 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_15_013752) do
+ActiveRecord::Schema.define(version: 2020_11_24_124414) do
+
+  create_table "polls", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "topic_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "topics", force: :cascade do |t|
+    t.integer "vote_id"
+    t.integer "poll_id"
     t.text "body"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -37,10 +46,9 @@ ActiveRecord::Schema.define(version: 2020_11_15_013752) do
     t.string "title"
     t.text "body"
     t.string "image_id"
-    t.boolean "status"
+    t.boolean "status", default: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "topic_id"
   end
 
 end

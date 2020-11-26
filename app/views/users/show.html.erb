@@ -1,1 +1,22 @@
 <h2>マイページ</h2>
+<div><span>ニックネーム</span><%= @user.name %></div>
+<div><span>メールアドレス　　</span><%= @user.email %></div>
+<div><%= link_to "お題登録", new_vote_path %></div>
+
+<table class="table">
+  <tbody>
+    <% @votes.each do |vote| %>
+      <tr>
+        <td><%= link_to vote.title, vote_path(vote) %></td>
+        <td>
+          <% if vote.status == true %>
+            <p><%= link_to "投票を終了する", vote_path(vote), method: :patch %></p>
+          <% elsif vote.status == false %>
+            <p><%= link_to "投票結果へ", vote_path(vote) %></p>
+          <% end %>
+        </td>
+        <td><%= link_to "削除", vote_path(vote), method: :delete, class: "btn-sm btn-danger" %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

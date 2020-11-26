@@ -1,6 +1,8 @@
 class UsersController < ApplicationController
   
   def show
+    @user = User.find(params[:id])
+    @votes = @user.votes
   end
   
   def edit
@@ -8,5 +10,10 @@ class UsersController < ApplicationController
   
   def update
   end
+
+  def user_params
+    params.require(:user).permit(:name, :email)
+  end
+  
 
 end

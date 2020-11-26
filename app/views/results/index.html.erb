@@ -1,1 +1,20 @@
 <h2>お題結果一覧</h2>
+<table class="table">
+  <thead>
+    <tr>
+			<th>タイトル</th>
+			<th>本文</th>
+		</tr>
+	</thead>
+  <tbody>
+    <% @votes.each do |vote| %>
+      <% if vote.status == true %>
+      <% elsif vote.status == false %>
+        <tr>
+          <td><%= link_to vote.title, result_path(vote) %></td>
+          <td><%= vote.body %></td>
+        </tr>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>

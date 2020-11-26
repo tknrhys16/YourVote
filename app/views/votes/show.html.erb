@@ -1,1 +1,46 @@
 <h2>お題投票詳細</h2>
+<div>
+  <span><b>お題</b>　　</span><%= @vote.title %>
+</div>
+<div>
+  <span><b>本文</b>　　</span><%= @vote.body %>
+</div>
+
+<!--each do-->
+<div>
+  <% @topic.each do |topic| %>
+    <div>
+      <%= topic.body %>
+　    <%= topic.polls.count %><span>票</span>
+　  </div>
+  <% end %>
+
+
+
+<!--投票機能-->
+  <div>
+    <% if Poll.where(topic_id: @topic.ids).where(user_id: current_user.id).size > 0 %>
+      <td>
+        <span>投票済みです</span>
+      </td>
+    <% else %>
+      <td>
+        <span>投票してください</span>
+          <%= form_with(model: @poll, url: vote_topic_polls_path(@vote,@topic), method: :post, local: true) do |f| %>
+            <% @topic.each do |topic| %>
+              <%= f.radio_button(:topic_id, topic.id) %>
+              <%= f.label(:topic_id, topic.body, value: topic.body)  %>
+            <% end %>
+            <%= f.submit class: 'btn' %>
+          <% end %>
+        <!--<%#= link_to vote_topic_polls_path(@vote,topic), method: :post do %>-->
+        <!--  <span class="btn radio-btn"></span>-->
+        <!--<#% end %>-->
+      </td>
+    <% end %>
+  </div>
+  
+  
+
+</div>
+
