@@ -12,9 +12,9 @@
 
 ActiveRecord::Schema.define(version: 2020_11_28_012639) do
 
-  create_table "polls", force: :cascade do |t|
+  create_table "posts", force: :cascade do |t|
     t.integer "user_id"
-    t.integer "topic_id"
+    t.integer "vote_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
