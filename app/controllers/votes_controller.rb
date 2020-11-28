@@ -14,7 +14,7 @@ class VotesController < ApplicationController
 
     # @vote.user_id = current_user.id
     if @vote.save
-      redirect_to complete_path#, notice: "You have created vote successfully."
+      redirect_to complete_path, notice: "You have created vote successfully."
     else
       render 'new'
     end
@@ -28,7 +28,7 @@ class VotesController < ApplicationController
   def show
     @poll = Poll.new
     @vote = Vote.find(params[:id])
-    @topic = @vote.topics
+    @topics = @vote.topics
   end
 
   def destroy

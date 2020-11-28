@@ -11,7 +11,7 @@
       <% if vote.status == true %>
       <% elsif vote.status == false %>
         <tr>
-          <td><%= link_to vote.title, result_path(vote) %></td>
+          <td><%= link_to vote.title, result_path(vote), class:"rounded black" %></td>
           <td><%= vote.body %></td>
         </tr>
       <% end %>

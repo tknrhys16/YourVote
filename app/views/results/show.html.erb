@@ -1,21 +1,74 @@
-<h2>お題結果詳細</h2>
-<svg width="500" height="50">
-    </svg>
-    <script>
-    // 1. データの準備
-    var topic_name = gon.topic_body;
-    var polls = 1;
-    var dataset = [
-      { "name": (topic_name), "value": (polls) },
-      { "name": (topic_name), "value": (polls) },
-  ]
+<h2>お題結果詳細データ</h2>
+<div class="center">
+<div class="col-xs-8">
+  <div id="poll_chart"></div> <!--円グラフ-->
+</div>
+<div class="col-xs-4">
+  <table class="table table-bordered">
+    <thead>
+		<tr>
+			<th class="gothic"><b>お題</b></th>
+			<th class="gothic"><b>票数</b></th>
+		</tr>
+	</thead>
+  <% @topics.each do |topic| %>
+      <tr>
+        <th><span class="rounded"><b><%= topic.body %></b></span></th>
+　      <td><span class="vote"><b><%= topic.polls.count %></b></span><span>票</span><br></td>
+　    </tr>
+  <% end %>
+  </table>
+<!--トップ投票数-->
+  <div>
+    <h3><b>TOP VOTE</b></h3>
+    <% @top_topics.each do |topic| %>
+      <th><span class="rounded"><b><%= topic.body %></b></span></th>
+　    <td><span class="vote"><b><%= topic.polls.count %></b></span><span>票</span><br></td>
+　  <% end %>
+  </div>
+</div>
 
+
+<!--データ取得-->
+<div id="topics">
+  <% @topics.each do |topic| %>
+    <div class="topic" data-topic="<%= topic.body %>"></div>
+    <% topic.polls.count %>
+  <% end %>
+</div>
+<div id="polls">
+  <% @topics.each do |topic| %>
+    <% topic.body %>
+    <div class="poll" data-poll="<%= topic.polls.count %>"></div>
+  <% end %>
+</div>
+
+
+
+
+
+<!--javascript-->
+<svg width="500" height="50">
+</svg>
+<script>
+  // 1. データの準備
+  var e = document.getElementById('topics')
+  var i = document.getElementById('polls')//constは最近のjavascriptの書き方
+  var topics = []
+  for (let number = 0; number < e.children.length; number++) {
+  // topics = e.children[number].getAttribute('data-topic');
+  var hash = { 'name': e.children[number].getAttribute('data-topic'), 'value': i.children[number].getAttribute('data-poll') }
+  topics.push(hash)
+  }
+  console.log(topics)
+
+  var dataset = topics
   var width = 400; // グラフの幅
   var height = 300; // グラフの高さ
   var radius = Math.min(width, height) / 2 - 10;
 
   // 2. SVG領域の設定
-  var svg = d3.select("body").append("svg").attr("width", width).attr("height", height);
+  var svg = d3.select("#poll_chart").append("svg").attr("width", width).attr("height", height);
 
   g = svg.append("g").attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
 
@@ -58,3 +111,5 @@
     .attr("text-anchor", "middle")
     .text(function(d) { return d.data.name; });
     </script>
+</div>
+

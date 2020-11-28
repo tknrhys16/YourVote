@@ -10,7 +10,7 @@
     <% @votes.each do |vote| %>
       <% if vote.status == true %>
         <tr>
-          <td><%= link_to vote.title, vote_path(vote) %></td>
+          <td><%= link_to vote.title, vote_path(vote), class:"rounded black" %></td>
           <td><%= vote.body %></td>
         </tr>
       <% elsif vote.status == false %>

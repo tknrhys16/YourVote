@@ -1,8 +1,8 @@
 class Topic < ApplicationRecord
   belongs_to :vote, inverse_of: :topics
   has_many :polls, dependent: :destroy
-  
-  
+
+  validates :body, presence: true
 
 # 投票機能
   def polled_by?(user)

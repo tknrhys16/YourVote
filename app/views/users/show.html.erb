@@ -1,22 +1,33 @@
 <h2>マイページ</h2>
-<div><span>ニックネーム</span><%= @user.name %></div>
-<div><span>メールアドレス　　</span><%= @user.email %></div>
-<div><%= link_to "お題登録", new_vote_path %></div>
+<div class="col-xs-4">
+<div><span class="rounded under-line"><b>ニックネーム</b></span><p class="margin-top-xs"><%= @user.name %></p></div><br>
+<div><span class="rounded under-line"><b>メールアドレス</b></span><p class="margin-top-xs"><%= @user.email %></p></div><br>
+<div><%= link_to "お題登録", new_vote_path, class:"btn btn-primary" %></div>
+</div>
 
+<div class="col-xs-8">
 <table class="table">
+  <thead>
+		<tr>
+			<th>タイトル</th>
+			<th></th>
+			<th></th>
+		</tr>
+	</thead>
   <tbody>
     <% @votes.each do |vote| %>
       <tr>
-        <td><%= link_to vote.title, vote_path(vote) %></td>
+        <td><%= link_to vote.title, vote_path(vote), class:"rounded black"%></td>
         <td>
           <% if vote.status == true %>
-            <p><%= link_to "投票を終了する", vote_path(vote), method: :patch %></p>
+            <p><%= link_to "投票を終了する", vote_path(vote), method: :patch, class: "btn btn-warning" %></p>
           <% elsif vote.status == false %>
-            <p><%= link_to "投票結果へ", vote_path(vote) %></p>
+            <p><%= link_to "投票結果へ", result_path(vote) %></p>
           <% end %>
         </td>
-        <td><%= link_to "削除", vote_path(vote), method: :delete, class: "btn-sm btn-danger" %></td>
+        <td><p><%= link_to "削除", vote_path(vote), method: :delete, class: "btn-sm btn-danger" %></p></td>
       </tr>
     <% end %>
   </tbody>
 </table>
+</div>

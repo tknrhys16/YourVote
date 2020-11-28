@@ -13,6 +13,154 @@
  *= require_tree .
  *= require_self
  */
- 
+
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import url('https://fonts.googleapis.com/css?family=M+PLUS+Rounded+1c');
+@import url('https://fonts.googleapis.com/css?family=Sawarabi+Gothic');
+
+.nav-logo {
+  font-family: 'M PLUS Rounded 1c', sans-serif;
+  color:black;
+}
+
+.logo {
+  font-family: 'Vidaloka', serif;
+  color:black;
+}
+
+body {
+  background-image: image-url("backgroundimage.jpg");
+}
+
+.margin-top-xs {
+  margin-top: 10px;
+}
+.margin-top-md {
+  margin-top: 20px;
+}
+.margin-right-xs {
+  margin-right: 5px;
+}
+.margin-bottom-xs {
+  margin-bottom: 5px;
+}
+.margin-bottom-md {
+  margin-bottom: 15px;
+}
+.black {
+  color: black;
+}
+h1 {
+  position: relative;
+  display: inline-block;
+  margin: 1rem 0 1rem -10px;
+  padding: 1rem 3rem;
+  color: #fff;
+  border-radius: 0 100vh 100vh 0;
+  background: #0075a9;
+  -webkit-box-shadow: 3px 3px 5px rgba(0, 0, 0, .2);
+  box-shadow: 3px 3px 5px rgba(0, 0, 0, .2);
+}
+
+h1:before {
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+  width: 0;
+  height: 0;
+  content: '';
+  border-top: 10px solid #005276;
+  border-left: 10px solid transparent;
+}
+.under-line {
+  border-bottom: 3px solid #000;
+}
+
+.header-btn {
+  color:#0000BB;
+}
+
+h2 {
+  background: linear-gradient(transparent 70%, #a7d6ff 70%);
+  margin-bottom: 30px;
+}
+h3 {
+  color: red;
+}
+
+.center {
+  text-align:center
+}
+
+p {
+    font-family: 'Sawarabi Gothic', sans-serif;
+    font-size: 17px;
+}
+
+.rounded {
+  font-family: 'M PLUS Rounded 1c', sans-serif;
+  font-size: 16px;
+}
+nav{
+border-bottom: 1px solid #ccc;
+}
+nav ul{
+display: table;
+margin: 0 auto;
+padding: 0;
+width: 80%;
+text-align: center;
+}
+nav ul li{
+display: table-cell;
+min-width: 50px;
+border-right: 1px solid #ccc;
+}
+nav ul li:first-child{
+border-left: 1px solid #ccc;
+}
+nav ul li a{
+display: block;
+width: 100%;
+padding: 10px 0;
+text-decoration: none;
+color: #009999;
+}
+nav ul li a:hover{
+background-color:#111111;
+border-bottom: 5px solid #111111;
+}
+nav ul li.current{
+font-weight: bold;
+}
+nav ul li.current a{
+border-bottom: 5px solid #00B0F0;
+color: #00B0F0;
+}
+
+.right {
+    margin: 0 0 0 auto !important;
+}
+
+.left {
+    margin: 0 0 auto 0 !important;
+}
+
+th {
+  font-size: 16px;
+}
+
+.vote {
+  font-size: 16px;
+  color: green;
+}
+
+.gothic {
+    font-family:"Yu Gothic", "游ゴシック", YuGothic, "游ゴシック体";
+    font-size: 15px;
+}
+
+.font-md {
+  font-size: 20px;
+}

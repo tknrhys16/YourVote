@@ -1,37 +1,47 @@
 <h2>お題投票詳細</h2>
-<div>
-  <span><b>お題</b>　　</span><%= @vote.title %>
+<div class="gothic">
+  <span><b>お題　　</b></span><span class="font-md"><%= @vote.title %></span>
 </div>
-<div>
-  <span><b>本文</b>　　</span><%= @vote.body %>
+<div class="gothic">
+  <span><b>本文　　</b></span><span class="font-md"><%= @vote.body %></span>
 </div>
 
 <!--each do-->
 <div>
-  <% @topic.each do |topic| %>
-    <div>
-      <%= topic.body %>
-　    <%= topic.polls.count %><span>票</span>
-　  </div>
+  <table class="table table-bordered">
+    <thead>
+		<tr>
+			<th>お題</th>
+			<th>票数</th>
+		</tr>
+	</thead>
+  <% @topics.each do |topic| %>
+      <tr>
+        <th><span class="rounded"><b><%= topic.body %></b></span></th>
+　      <td><span class="vote"><b><%= topic.polls.count %></b></span><span>票</span><br></td>
+　    </tr>
   <% end %>
+  </table>
 
 
 
 <!--投票機能-->
-  <div>
-    <% if Poll.where(topic_id: @topic.ids).where(user_id: current_user.id).size > 0 %>
+  <div class="margin-top-md">
+    <% if Poll.where(topic_id: @topics.ids).where(user_id: current_user.id).size > 0 %>
       <td>
-        <span>投票済みです</span>
+        <span class="label label-warning font-md">投票済みです</span>
       </td>
     <% else %>
       <td>
-        <span>投票してください</span>
-          <%= form_with(model: @poll, url: vote_topic_polls_path(@vote,@topic), method: :post, local: true) do |f| %>
-            <% @topic.each do |topic| %>
+        <div class="margin-bottom-md"><span class="label label-info font-md">投票してください</span></div>
+          <%= form_with(model: @poll, url: vote_topic_polls_path(@vote,@topics), method: :post, local: true) do |f| %>
+            <% @topics.each do |topic| %>
+            <div>
               <%= f.radio_button(:topic_id, topic.id) %>
               <%= f.label(:topic_id, topic.body, value: topic.body)  %>
+            </div>
             <% end %>
-            <%= f.submit class: 'btn' %>
+            <%= f.submit "投票する", class: 'btn btn-primary' %>
           <% end %>
         <!--<%#= link_to vote_topic_polls_path(@vote,topic), method: :post do %>-->
         <!--  <span class="btn radio-btn"></span>-->
@@ -39,8 +49,8 @@
       </td>
     <% end %>
   </div>
-  
-  
+
+
 
 </div>
 
